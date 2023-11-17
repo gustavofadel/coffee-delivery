@@ -8,6 +8,7 @@ export const defaultTheme = {
     'base-card': '#F3F2F2',
     'base-hover': '#D7D5D5',
     'base-input': '#EDEDED',
+    'base-label': '#8D8686',
     'base-subtitle': '#403937',
     'base-text': '#574F4D',
     'base-title': '#272221',
