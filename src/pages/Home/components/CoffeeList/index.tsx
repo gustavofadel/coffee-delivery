@@ -1,3 +1,19 @@
+import { TitleText } from '../../../../components/Typography'
+import { coffees } from '../../../../data/coffees'
+import { CoffeeCard } from '../CoffeeCard'
+import { CoffeeListContainer, CoffeeListItems } from './styles'
+
 export function CoffeeList() {
-  return <h1>Coffee List</h1>
+  return (
+    <CoffeeListContainer className="container">
+      <TitleText size="l" color="subtitle">
+        Nossos cafés
+      </TitleText>
+      <CoffeeListItems>
+        {coffees.map((coffee) => (
+          <CoffeeCard key={coffee.id} coffee={coffee} />
+        ))}
+      </CoffeeListItems>
+    </CoffeeListContainer>
+  )
 }
