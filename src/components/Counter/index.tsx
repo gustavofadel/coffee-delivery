@@ -1,5 +1,5 @@
 import { Minus, Plus } from 'phosphor-react'
-import { CounterContainer, Icon } from './styles'
+import { CounterContainer, IconContainer } from './styles'
 
 interface CounterProps {
   quantity: number
@@ -11,15 +11,15 @@ export function Counter({ quantity, size = 'medium' }: CounterProps) {
 
   return (
     <CounterContainer size={size}>
-      <Icon disabled={decreaseCounterDisabled}>
+      <IconContainer disabled={decreaseCounterDisabled}>
         <Minus size={14} weight="fill" />
-      </Icon>
+      </IconContainer>
 
       <input type="number" value={quantity} readOnly />
 
-      <Icon>
+      <IconContainer>
         <Plus size={14} weight="fill" />
-      </Icon>
+      </IconContainer>
     </CounterContainer>
   )
 }

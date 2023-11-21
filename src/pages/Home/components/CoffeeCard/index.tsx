@@ -8,7 +8,6 @@ import {
   CoffeeCardContainer,
   Description,
   Name,
-  Price,
   Tag,
   Tags,
 } from './styles'
@@ -44,12 +43,12 @@ export function CoffeeCard({ coffee }: CoffeeProps) {
       <Description>{coffee.description}</Description>
 
       <CardFooter>
-        <Price>
+        <div>
           <RegularText size="s">R$</RegularText>
           <TitleText size="m" color="text">
             {formattedPrice}
           </TitleText>
-        </Price>
+        </div>
 
         <Actions>
           <Counter quantity={1} />

@@ -65,15 +65,15 @@ export const CardFooter = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`
 
-export const Price = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 3px;
+  > div {
+    display: flex;
+    align-items: center;
+    gap: 3px;
 
-  p {
-    line-height: 0.75rem;
+    p {
+      line-height: 0.75rem;
+    }
   }
 `
 

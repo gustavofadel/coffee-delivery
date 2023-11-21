@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-interface CounterContainerProps {
+export interface CounterContainerProps {
   size: 'medium' | 'small'
 }
 
@@ -11,6 +11,7 @@ export const CounterContainer = styled.div<CounterContainerProps>`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   gap: 4px;
   border-radius: 6px;
 
@@ -39,7 +40,7 @@ export const CounterContainer = styled.div<CounterContainerProps>`
     `}
 `
 
-export const Icon = styled.button.attrs({ type: 'button' })`
+export const IconContainer = styled.button.attrs({ type: 'button' })`
   width: 0.875rem;
   height: 0.875rem;
   border: none;
