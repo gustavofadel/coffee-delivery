@@ -1,13 +1,36 @@
-import { MapPinLine } from 'phosphor-react'
+import {
+  Bank,
+  CreditCard,
+  CurrencyDollar,
+  MapPinLine,
+  Money,
+} from 'phosphor-react'
 import { useTheme } from 'styled-components'
 import { Input } from '../../../../components/Input'
 import { RegularText, TitleText } from '../../../../components/Typography'
+import { PaymentMethod } from '../PaymentMethod'
 import {
   AddressFormContainer,
   CheckoutFormContainer,
   FormSectionContainer,
   FormSectionTitle,
+  PaymentMethodOptionsContainer,
 } from './styles'
+
+export const paymentMethods = {
+  credit: {
+    icon: <CreditCard size={16} />,
+    label: 'Cartão de Crédito',
+  },
+  debit: {
+    icon: <Bank size={16} />,
+    label: 'Cartão de Débito',
+  },
+  money: {
+    icon: <Money size={16} />,
+    label: 'Dinheiro',
+  },
+}
 
 export function CheckoutForm() {
   const { colors } = useTheme()
@@ -43,6 +66,31 @@ export function CheckoutForm() {
           <Input placeholder="Cidade" />
           <Input placeholder="UF" />
         </AddressFormContainer>
+      </FormSectionContainer>
+
+      <FormSectionContainer>
+        <FormSectionTitle>
+          <CurrencyDollar size={22} color={colors.purple} />
+
+          <div>
+            <RegularText color="subtitle">Pagamento</RegularText>
+            <RegularText size="s">
+              O pagamento é feito na entrega. Escolha a forma que deseja pagar
+            </RegularText>
+          </div>
+        </FormSectionTitle>
+
+        <PaymentMethodOptionsContainer>
+          {Object.entries(paymentMethods).map(([key, { icon, label }]) => (
+            <PaymentMethod
+              key={label}
+              id={key}
+              icon={icon}
+              label={label}
+              value={key}
+            />
+          ))}
+        </PaymentMethodOptionsContainer>
       </FormSectionContainer>
     </CheckoutFormContainer>
   )
