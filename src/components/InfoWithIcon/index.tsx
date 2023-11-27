@@ -1,20 +1,24 @@
 import { ReactNode } from 'react'
-import { BenefitContainer, IconContainer } from './styles'
+import { IconContainer, InfoWithIconContainer } from './styles'
 
-interface BenefitProps {
+interface InfoWithIconProps {
   icon: ReactNode
   iconBackgroundColor: string
   text: string | ReactNode
 }
 
-export function Benefit({ icon, iconBackgroundColor, text }: BenefitProps) {
+export function InfoWithIcon({
+  icon,
+  iconBackgroundColor,
+  text,
+}: InfoWithIconProps) {
   return (
-    <BenefitContainer>
+    <InfoWithIconContainer>
       <IconContainer iconBackgroundColor={iconBackgroundColor}>
         {icon}
       </IconContainer>
 
       {typeof text === 'string' ? <p>{text}</p> : text}
-    </BenefitContainer>
+    </InfoWithIconContainer>
   )
 }

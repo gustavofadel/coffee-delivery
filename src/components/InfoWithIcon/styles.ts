@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const BenefitContainer = styled.div`
+export const InfoWithIconContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 0.75rem;
