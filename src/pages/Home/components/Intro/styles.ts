@@ -1,9 +1,19 @@
+import { rgba } from 'polished'
 import styled from 'styled-components'
+import introBackground from '../../../../assets/intro-background.svg'
 import { TitleText } from '../../../../components/Typography'
 
 export const IntroContainer = styled.section`
   width: 100%;
   height: 34rem;
+  background: ${({ theme }) => `url(${introBackground}) no-repeat center,
+    linear-gradient(
+      0deg,
+      ${theme.colors.white} 0%,
+      ${rgba(theme.colors.background, 0.2)} 50%,
+      ${theme.colors.background} 100%
+    )`};
+  background-size: cover;
 
   display: flex;
   align-items: center;
