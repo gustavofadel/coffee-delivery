@@ -18,7 +18,7 @@ export const InputContainer = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  transition: 0.4s;
+  transition: 0.2s;
   overflow: hidden;
 
   &:focus-within {

@@ -11,13 +11,16 @@ import {
 } from './styles'
 
 export function SelectedCoffees() {
-  const { cartItems, cartItemsTotalPrice } = useContext(CartContext)
+  const { cartItems, cartItemsTotalPrice, cartQuantity } =
+    useContext(CartContext)
 
   const deliveryPrice = 3.5
 
   const formattedItemsPrice = formatMoney(cartItemsTotalPrice)
   const formattedDeliveryPrice = formatMoney(deliveryPrice)
   const formattedTotalPrice = formatMoney(cartItemsTotalPrice + deliveryPrice)
+
+  const submitCheckoutFormDisabled = cartQuantity < 1
 
   return (
     <SelectedCoffeesContainer>
@@ -50,7 +53,11 @@ export function SelectedCoffees() {
             </RegularText>
           </div>
 
-          <Button text="Confirmar pedido" type="submit" />
+          <Button
+            text="Confirmar pedido"
+            disabled={submitCheckoutFormDisabled}
+            type="submit"
+          />
         </ConfirmationSectionContainer>
       </DetailsContainer>
     </SelectedCoffeesContainer>
