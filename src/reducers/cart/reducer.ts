@@ -1,10 +1,6 @@
 import { produce } from 'immer'
-import { Coffee } from '../../pages/Home/components/CoffeeCard'
+import { CartItem } from '../../contexts/CartContext'
 import { ActionTypes } from './actions'
-
-export interface CartItem extends Coffee {
-  quantity: number
-}
 
 interface CartState {
   items: CartItem[]

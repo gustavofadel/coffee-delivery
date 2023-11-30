@@ -1,6 +1,7 @@
+import { useContext } from 'react'
 import { Button } from '../../../../components/Button'
 import { RegularText, TitleText } from '../../../../components/Typography'
-import { coffees } from '../../../../data/coffees'
+import { CartContext } from '../../../../contexts/CartContext'
 import { CartItem } from '../CartItem'
 import {
   ConfirmationSectionContainer,
@@ -9,6 +10,8 @@ import {
 } from './styles'
 
 export function SelectedCoffees() {
+  const { cartItems } = useContext(CartContext)
+
   return (
     <SelectedCoffeesContainer>
       <TitleText size="xs" color="subtitle">
@@ -16,8 +19,9 @@ export function SelectedCoffees() {
       </TitleText>
 
       <DetailsContainer>
-        <CartItem item={{ ...coffees[0], quantity: 1 }} />
-        <CartItem item={{ ...coffees[5], quantity: 1 }} />
+        {cartItems.map((item) => (
+          <CartItem key={item.id} item={item} />
+        ))}
 
         <ConfirmationSectionContainer>
           <div>
