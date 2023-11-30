@@ -2,6 +2,7 @@ import { useContext } from 'react'
 import { Button } from '../../../../components/Button'
 import { RegularText, TitleText } from '../../../../components/Typography'
 import { CartContext } from '../../../../contexts/CartContext'
+import { formatMoney } from '../../../../utils/format-money'
 import { CartItem } from '../CartItem'
 import {
   ConfirmationSectionContainer,
@@ -10,7 +11,13 @@ import {
 } from './styles'
 
 export function SelectedCoffees() {
-  const { cartItems } = useContext(CartContext)
+  const { cartItems, cartItemsTotalPrice } = useContext(CartContext)
+
+  const deliveryPrice = 3.5
+
+  const formattedItemsPrice = formatMoney(cartItemsTotalPrice)
+  const formattedDeliveryPrice = formatMoney(deliveryPrice)
+  const formattedTotalPrice = formatMoney(cartItemsTotalPrice + deliveryPrice)
 
   return (
     <SelectedCoffeesContainer>
@@ -26,12 +33,12 @@ export function SelectedCoffees() {
         <ConfirmationSectionContainer>
           <div>
             <RegularText size="s">Total de itens</RegularText>
-            <RegularText>R$ 29,70</RegularText>
+            <RegularText>R$ {formattedItemsPrice}</RegularText>
           </div>
 
           <div>
             <RegularText size="s">Entrega</RegularText>
-            <RegularText>R$ 3,50</RegularText>
+            <RegularText>R$ {formattedDeliveryPrice}</RegularText>
           </div>
 
           <div>
@@ -39,7 +46,7 @@ export function SelectedCoffees() {
               Total
             </RegularText>
             <RegularText size="l" weight={700} color="subtitle">
-              R$ 33,20
+              R$ {formattedTotalPrice}
             </RegularText>
           </div>
 

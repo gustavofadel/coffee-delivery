@@ -10,6 +10,7 @@ export interface CartItem extends Coffee {
 interface CartContextType {
   cartItems: CartItem[]
   cartQuantity: number
+  cartItemsTotalPrice: number
   addItemToCart: (newItem: CartItem) => void
 }
 
@@ -40,6 +41,11 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
 
   const cartQuantity = cartState.items.length
 
+  const cartItemsTotalPrice = cartState.items.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0,
+  )
+
   useEffect(() => {
     const stateJSON = JSON.stringify(cartState)
 
@@ -55,6 +61,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       value={{
         cartItems: cartState.items,
         cartQuantity,
+        cartItemsTotalPrice,
         addItemToCart,
       }}
     >
