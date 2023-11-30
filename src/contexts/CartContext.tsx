@@ -4,6 +4,7 @@ import { CartItem, cartReducer } from '../reducers/cart/reducer'
 
 interface CartContextType {
   addItemToCart: (newItem: CartItem) => void
+  cartQuantity: number
 }
 
 export const CartContext = createContext({} as CartContextType)
@@ -31,6 +32,8 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     },
   )
 
+  const cartQuantity = cartState.items.length
+
   useEffect(() => {
     const stateJSON = JSON.stringify(cartState)
 
@@ -45,6 +48,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     <CartContext.Provider
       value={{
         addItemToCart,
+        cartQuantity,
       }}
     >
       {children}
