@@ -1,12 +1,35 @@
 import { Clock, CurrencyDollar, MapPin } from 'phosphor-react'
+import { useEffect } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useTheme } from 'styled-components'
 import illustration from '../../assets/success-illustration.svg'
 import { InfoWithIcon } from '../../components/InfoWithIcon'
 import { RegularText, TitleText } from '../../components/Typography'
+import { CheckoutFormData } from '../Checkout'
+import { paymentMethods } from '../Checkout/components/PaymentMethodOptions'
 import { OrderDetailsContainer, SuccessContainer } from './styles'
+
+interface LocationType {
+  state: CheckoutFormData
+}
 
 export function Success() {
   const { colors } = useTheme()
+
+  const { state } = useLocation() as LocationType
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!state) {
+      navigate('/')
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  if (!state) {
+    return <></>
+  }
 
   return (
     <SuccessContainer className="container">
@@ -25,9 +48,9 @@ export function Success() {
             iconBackgroundColor={colors.purple}
             text={
               <RegularText>
-                Entrega em <strong>Rua João Daniel Martinelli</strong>, 102
+                Entrega em <strong>{state.street}</strong>, {state.number}
                 <br />
-                Farrapos - Porto Alegre, RS
+                {state.district} - {state.city}, {state.uf}
               </RegularText>
             }
           />
@@ -51,7 +74,7 @@ export function Success() {
               <RegularText>
                 Pagamento na entrega
                 <br />
-                <strong>Cartão de Crédito</strong>
+                <strong>{paymentMethods[state.paymentMethod].label}</strong>
               </RegularText>
             }
           />

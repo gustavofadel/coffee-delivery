@@ -58,6 +58,12 @@ export function cartReducer(state: CartState, action: any) {
       })
     }
 
+    case ActionTypes.CLEAN_CART: {
+      return produce(state, (draft) => {
+        draft.items = []
+      })
+    }
+
     default:
       return state
   }

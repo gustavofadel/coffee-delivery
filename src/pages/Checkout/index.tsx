@@ -1,6 +1,9 @@
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useContext } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 import zod from 'zod'
+import { CartContext } from '../../contexts/CartContext'
 import { CheckoutForm } from './components/CheckoutForm'
 import { SelectedCoffees } from './components/SelectedCoffees'
 import { CheckoutContainer } from './styles'
@@ -26,9 +29,11 @@ const checkoutFormValidationSchema = zod.object({
   }),
 })
 
-type CheckoutFormData = zod.infer<typeof checkoutFormValidationSchema>
+export type CheckoutFormData = zod.infer<typeof checkoutFormValidationSchema>
 
 export function Checkout() {
+  const { cleanCart } = useContext(CartContext)
+
   const checkoutForm = useForm<CheckoutFormData>({
     resolver: zodResolver(checkoutFormValidationSchema),
     defaultValues: {
@@ -36,8 +41,13 @@ export function Checkout() {
     },
   })
 
+  const navigate = useNavigate()
+
   function handleConfirmOrder(data: CheckoutFormData) {
-    console.log(data)
+    navigate('/success', {
+      state: data,
+    })
+    cleanCart()
   }
 
   const { handleSubmit } = checkoutForm
