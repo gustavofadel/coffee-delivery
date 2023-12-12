@@ -14,7 +14,7 @@ export function Counter({
   onIncrease,
   onDecrease,
 }: CounterProps) {
-  const decreaseCounterDisabled = quantity < 1
+  const decreaseCounterDisabled = quantity <= 1
 
   return (
     <CounterContainer size={size}>
