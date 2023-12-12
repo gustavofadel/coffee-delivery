@@ -3,6 +3,7 @@ import { Coffee } from '../pages/Home/components/CoffeeCard'
 import {
   addItemToCartAction,
   changeCartItemQuantityAction,
+  removeCartItemAction,
 } from '../reducers/cart/actions'
 import { cartReducer } from '../reducers/cart/reducer'
 
@@ -19,6 +20,7 @@ interface CartContextType {
     cartItemId: number,
     type: 'increase' | 'decrease',
   ) => void
+  removeCartItem: (cartItemId: number) => void
 }
 
 export const CartContext = createContext({} as CartContextType)
@@ -70,6 +72,10 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     dispatch(changeCartItemQuantityAction(cartItemId, type))
   }
 
+  function removeCartItem(cartItemId: number) {
+    dispatch(removeCartItemAction(cartItemId))
+  }
+
   return (
     <CartContext.Provider
       value={{
@@ -78,6 +84,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         cartItemsTotalPrice,
         addItemToCart,
         changeCartItemQuantity,
+        removeCartItem,
       }}
     >
       {children}

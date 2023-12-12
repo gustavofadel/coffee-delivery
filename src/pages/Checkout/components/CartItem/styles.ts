@@ -42,7 +42,7 @@ export const ActionsContainer = styled.div`
   }
 `
 
-export const RemoveButton = styled.div`
+export const RemoveButton = styled.button`
   display: flex;
   align-items: center;
   gap: 0.25rem;

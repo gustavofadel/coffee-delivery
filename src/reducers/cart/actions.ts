@@ -3,6 +3,7 @@ import { CartItem } from '../../contexts/CartContext'
 export enum ActionTypes {
   ADD_ITEM_TO_CART = 'ADD_ITEM_TO_CART',
   CHANGE_CART_ITEM_QUANTITY = 'CHANGE_CART_ITEM_QUANTITY',
+  REMOVE_CART_ITEM = 'REMOVE_CART_ITEM',
 }
 
 export function addItemToCartAction(newItem: CartItem) {
@@ -23,6 +24,15 @@ export function changeCartItemQuantityAction(
     payload: {
       cartItemId,
       type,
+    },
+  }
+}
+
+export function removeCartItemAction(cartItemId: number) {
+  return {
+    type: ActionTypes.REMOVE_CART_ITEM,
+    payload: {
+      cartItemId,
     },
   }
 }

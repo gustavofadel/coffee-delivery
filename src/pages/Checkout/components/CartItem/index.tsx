@@ -16,7 +16,7 @@ interface CartItemProps {
 }
 
 export function CartItem({ item }: CartItemProps) {
-  const { changeCartItemQuantity } = useContext(CartContext)
+  const { changeCartItemQuantity, removeCartItem } = useContext(CartContext)
 
   const totalPrice = item.price * item.quantity
   const formattedTotalPrice = formatMoney(totalPrice)
@@ -27,6 +27,10 @@ export function CartItem({ item }: CartItemProps) {
 
   function handleDecrease() {
     changeCartItemQuantity(item.id, 'decrease')
+  }
+
+  function handleRemove() {
+    removeCartItem(item.id)
   }
 
   return (
@@ -45,7 +49,7 @@ export function CartItem({ item }: CartItemProps) {
               onDecrease={handleDecrease}
             />
 
-            <RemoveButton>
+            <RemoveButton onClick={handleRemove}>
               <Trash size={16} />
               REMOVER
             </RemoveButton>
