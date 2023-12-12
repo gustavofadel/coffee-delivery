@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const InputWrapper = styled.div`
   display: flex;
@@ -6,9 +6,17 @@ export const InputWrapper = styled.div`
 
   gap: 0.3rem;
   position: relative;
+
+  > p {
+    color: ${({ theme }) => theme.colors['base-error']};
+  }
 `
 
-export const InputContainer = styled.div`
+interface InputContainerProps {
+  hasError: boolean
+}
+
+export const InputContainer = styled.div<InputContainerProps>`
   height: 2.625rem;
   border-radius: 4px;
   border: 1px solid ${({ theme }) => theme.colors['base-button']};
@@ -24,6 +32,12 @@ export const InputContainer = styled.div`
   &:focus-within {
     border-color: ${({ theme }) => theme.colors['yellow-dark']};
   }
+
+  ${({ theme, hasError }) =>
+    hasError &&
+    css`
+      border-color: ${theme.colors['base-error']};
+    `}
 `
 
 export const StyledInput = styled.input`

@@ -6,6 +6,7 @@ export const defaultTheme = {
 
     'base-button': '#E6E5E5',
     'base-card': '#F3F2F2',
+    'base-error': '#F84747',
     'base-hover': '#D7D5D5',
     'base-input': '#EDEDED',
     'base-label': '#8D8686',
